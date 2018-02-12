@@ -11,11 +11,16 @@ router.get("/signup", ensureLoggedOut(), (req, res, next) => {
 });
 
 router.post("/signup", ensureLoggedOut(), (req, res, next) => {
+  const mail = req.body.mail;
   const username = req.body.username;
   const password = req.body.password;
 
   if (!password) {
     req.flash("error", "Password is required");
+    return res.redirect("/signup");
+  }
+  if (!mail) {
+    req.flash("error", "Email is required");
     return res.redirect("/signup");
   }
 
@@ -24,6 +29,7 @@ router.post("/signup", ensureLoggedOut(), (req, res, next) => {
     bcrypt.hash(password, salt, (err, hash) => {
       if (err) return next(err);
       const user = new User({
+        mail,
         username,
         password: hash
       });
