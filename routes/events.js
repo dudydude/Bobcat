@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Event = require("../models/event");
 const ensureLogin = require("connect-ensure-login");
 
 // GET create event
@@ -11,25 +12,34 @@ router.get("/new", function(req, res, next) {
 // POST a new event
 
 router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  console.log("DEBUG req.body", req.body);
   const eventInfo = {
-    eventTime: req.body.eventTime,
+    name: req.body.name,
     venue: req.body.venue,
+    date: req.body.date,
     description: req.body.description,
     genre: req.body.genre,
-    _creator: req.user._id
+    creator: req.user._id
   };
 
   const newEvent = new Event(eventInfo);
-
+  console.log(newEvent);
   newEvent.save(err => {
+    // if (newEvent.errors) {
+    //   return res.render("events/new", {
+    //     title: "Create an event",
+    //     errors: newEvent.errors,
+    //     event: newEvent
+    //   });
+    // }
+    const event = newEvent;
     if (err) {
       return next(err);
     }
     // redirect to the event page if it saves
-    return res.redirect(`/events/${event.id}`);
+    return res.redirect(`/events/${event._id}`);
   });
 });
-module.exports = router;
 
 // edit specific event
 
@@ -44,11 +54,12 @@ router.post("/:id", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.findByIdAndUpdate(
     req.params.id,
     {
-      eventTime: req.body.eventTime,
+      name: req.body.name,
       venue: req.body.venue,
+      date: req.body.date,
       description: req.body.description,
       genre: req.body.genre,
-      _creator: req.user._id
+      creator: req.user._id
     },
     (err, event) => {
       if (err) return next(err);
@@ -65,3 +76,5 @@ router.post("/:id/delete", (req, res, next) => {
     res.redirect("/events");
   });
 });
+
+module.exports = router;
