@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("../models/event");
+const Venue = require("../models/venue");
+
 const ensureLogin = require("connect-ensure-login");
 
 // GET create event
@@ -14,29 +16,67 @@ router.get("/new", function(req, res, next) {
 router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const eventInfo = {
     name: req.body.name,
-    venue: req.body.venue,
     date: req.body.date,
     description: req.body.description,
+    venue: req.body.searchTextField,
     genre: req.body.genre,
     creator: req.user._id
   };
 
+  const venueInfo = {
+    name: req.body.searchTextField,
+    adress: req.body.adress,
+    loc: {
+      lng: req.body.venue_long,
+      lat: req.body.venue_lat
+    }
+  };
+
+  //   console.log(newEvent);
+  //   newEvent.save(err =>
+  //     { if (req.body.searchTextField ===  checkVenue)
+  //       {
+  //        newVenue.save(err => {
+
+  //        })
+  //       }
+  //     const event = newEvent;
+  //     if (err) {
+  //       return next(err);
+  //     }
+  //     // redirect to the event page if it saves
+  //     return res.redirect(`/events/${event._id}`);
+  //   });
+  // });
+
+  const newVenue = new Venue(venueInfo);
   const newEvent = new Event(eventInfo);
+  //const checkVenue = Venue.findOne({ name: req.body.searchTextField })//,(function (err, results) {
+
   console.log(newEvent);
+  // console.log("DEBUG CHECK VENUE" + checkVenue);
+
   newEvent.save(err => {
-    // if (newEvent.errors) {
-    //   return res.render("events/new", {
-    //     title: "Create an event",
-    //     errors: newEvent.errors,
-    //     event: newEvent
-    //   });
-    // }
     const event = newEvent;
     if (err) {
       return next(err);
     }
-    // redirect to the event page if it saves
-    return res.redirect(`/events/${event._id}`);
+
+    Venue.findOne({ name: req.body.searchTextField }, function(err, result) {
+      if (err) {
+        console.error;
+      }
+      if (!result) {
+        newVenue.save(err => {
+          const venue = newVenue;
+          if (err) {
+            return next(err);
+          }
+        });
+      }
+    }),
+      // redirect to the event page if it saves
+      res.redirect(`/events/${event._id}`);
   });
 });
 

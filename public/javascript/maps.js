@@ -1,10 +1,18 @@
 var autocomplete, map, marker;
-
-console.log("it works");
+// console.log("it works");
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 48.860342, lng: 2.341932 },
     zoom: 14
+  });
+  const venue_list = Venue.find({});
+
+  const myLatLng = [];
+  console.log("DEBUG VENUE_LIST" + venue_list);
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: { venue_name: venue.name }
   });
 
   var infoWindow = new google.maps.InfoWindow({ map: map });
@@ -53,7 +61,8 @@ function initialize() {
     document.getElementById("venue_lat").value = venue.geometry.location.lat();
     document.getElementById("venue_long").value = venue.geometry.location.lng();
     //alert("This function is working!");
-    //alert(venue.formatted_address);
+    alert(venue.formatted_address);
+    alert(venue.name);
     // alert(place.address_components[0].long_name);
   });
 }
