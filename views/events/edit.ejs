@@ -1,0 +1,44 @@
+<h1> Edit event </h1>
+<form method="POST" action="/events">
+    <label>
+        Name of the event:
+        <input type="text" name="name"  >
+    </label>
+    <br>
+    <label>
+        Location:
+        <input type="text" name="venue">
+    </label>
+    </br>
+    <label>
+        Date :
+    </label>
+
+    <input type="date" name="date">
+    </br>
+    <label>
+        Description :
+        <input type="text" name="description">
+    </label>
+    </br>
+    <!-- <label> Upload a picture
+        <input type="file" name="photo">
+    </label>-->
+    <label> Choose the mood of the event :
+
+        <input type="checkbox" name="genre" value="Rave"> Rave
+
+        <input type="checkbox" name="genre" value="Smooth"> Smooth
+
+        <input type="checkbox" name="genre" value="Mosh"> Mosh
+        <br>
+        <input type="checkbox" name="genre" value="Nod"> Nod
+        <br>
+        <input type="checkbox" name="genre" value="Groove"> Groove
+    </label> 
+    <button type="submit">Create</button>
+</form>
+<br>
+<form method= "POST" action= "/events">
+<button name = "delete">Delete event</button> 
+</form>

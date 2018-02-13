@@ -12,7 +12,6 @@ router.get("/new", function(req, res, next) {
 // POST a new event
 
 router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  console.log("DEBUG req.body", req.body);
   const eventInfo = {
     name: req.body.name,
     venue: req.body.venue,
