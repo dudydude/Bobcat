@@ -86,6 +86,7 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/auth"));
 app.use("/events", require("./routes/events"));
+app.use("/map", require("./routes/map"));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

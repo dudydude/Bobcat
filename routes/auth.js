@@ -64,7 +64,7 @@ router.post(
   "/login",
   ensureLoggedOut(),
   passport.authenticate("local-login", {
-    successRedirect: "/",
+    successRedirect: "/map",
     failureRedirect: "/login",
     failureFlash: true
   })
@@ -72,7 +72,7 @@ router.post(
 
 router.get("/logout", ensureLoggedIn(), (req, res, next) => {
   req.logout();
-  res.redirect("/login");
+  res.redirect("/");
 });
 
 module.exports = router;
