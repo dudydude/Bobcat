@@ -3,7 +3,7 @@
 <ul>
   <% events.forEach((event) => { %>
     <li>
-    <%= event.name %> - <%= event.venue %> - <%= event.eventTime %>
+    <%= event.name %> - <%= event.venue %> - <%= event.date %>
     <a href="/events/<%= event._id %>">View Details</a>
     </li>
   <% }) %>
