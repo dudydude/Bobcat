@@ -1,10 +1,15 @@
-<h1>Events</h1>
+<h1>Upcoming</h1>
 
-<ul>
-  <% events.forEach((event) => { %>
-    <li>
-    <%= event.name %> - <%= event.venue %> - <%= event.date %>
-    <a href="/events/<%= event._id %>">View Details</a>
-    </li>
-  <% }) %>
+<ul class="collapsible" data-collapsible="accordion">
+<% events.forEach((event) => { %>
+<li>
+  <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
+  <div class="collapsible-body"><a href="#!" class="secondary-content"><i class="small material-icons">pets</i></a>
+  <span><%= event.date %></span>
+  <br><br><a href="/events/<%= event._id %>">View Details</a><br>
+  </div>
+</li>
+<% }) %>
 </ul>
+
+
