@@ -1,14 +1,94 @@
-<p>BOBCAT</p>
-<h1><%=event.name%></h1>
+<nav>
+<div class="nav-wrapper">
+  <a href="/map" class="brand-logo">Logo</a>
+  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+  <ul class="right hide-on-med-and-down">
+  <li> <a href = '/events/new'>create</a> </li>
+  <li> <a href = '/events/'>view all</a> </li>
+  
+  <li><a href = '/logout'>logout</a>
+</li>
+  </ul>
+  <ul class="side-nav" id="mobile-demo">
+  <li><a href = '/logout'>logout</a>
+  </li>
+  <li> <a href = '/events/new'>create</a> </li>
+  </ul>
+</div>
+</nav>
 
-<h3>Event description: <span><%= event.description %></span></h3>
 
-<h3>Date and time: <span><%= event.date %></span></h3>
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card medium">
+        <div class="card-image">
+          <img src="/images/stuckcat.jpg" >
+          <span class="card-title"><h1><%=event.name%></h1></span>
+        </div>
+        <div class="card-content">
+          <p><%= event.date.toDateString() %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h3>Venue: <span><%= event.venue %></span></h3>
+<div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="images/sample-1.jpg">
+              <span class="card-title"><%= event.venue %></span>
+            </div>
+            <div class="card-content">
+              <p><%= event.description %></p>
+            </div>
+            <div class="card-action">
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<% if (event.creator.equals(user._id)) { %>
-  <a href="/events/<%= event._id %>/edit">Edit event</a>
+
+
+
+
+<ul class="collection">
+    <li class="collection-item avatar">
+      <img src="images/yuna.jpg" alt="" class="circle">
+      <span class="title"><%=event.name%></span>
+      
+      <a href="#!" class="secondary-content"></a>
+    </li>
+    <li class="collection-item avatar">
+      <i class="material-icons circle">folder</i>
+      <span class="title">Title</span>
+      <p>First Line <br>
+         Second Line
+      </p>
+      <a href="#!" class="secondary-content"></a>
+    </li>
+    <li class="collection-item avatar">
+      <i class="material-icons circle green">insert_chart</i>
+      <span class="title">Title</span>
+      <p>First Line <br>
+         Second Line
+      </p>
+      <a href="#!" class="secondary-content"></a>
+    </li>
+    <li class="collection-item avatar">
+      <i class="material-icons circle red">play_arrow</i>
+      <span class="title">Title</span>
+      <p>First Line <br>
+         Second Line
+      </p>
+      <a href="#!" class="secondary-content"></a>
+    </li>
+  </ul>
+
+  <% if (event.creator.equals(user._id)) { %>
+  <a href="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">
+  <i class="material-icons right">mode_edit</i>edit event</a>
 <%} %>
 
 

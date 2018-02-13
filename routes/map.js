@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 const ensureLogin = require("connect-ensure-login");
 
-router.get("/", function(req, res, next) {
+const Venue = require("../models/venue");
+
+router.get("/", ensureLoggedIn(), (req, res, next) => {
   res.render("events/map");
 });
 
