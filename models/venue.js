@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const venueSchema = new Schema({
   name: String,
   loc: {
-    type: [Number], // [<longitude>, <latitude>]
-    index: "2d" // create the geospatial index
+    lng: Number,
+    lat: Number
   },
   // description: String,
   address: String

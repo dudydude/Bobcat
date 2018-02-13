@@ -53,7 +53,8 @@ function initialize() {
     document.getElementById("venue_lat").value = venue.geometry.location.lat();
     document.getElementById("venue_long").value = venue.geometry.location.lng();
     //alert("This function is working!");
-    //alert(venue.formatted_address);
+    alert(venue.formatted_address);
+    alert(venue.name);
     // alert(place.address_components[0].long_name);
   });
 }
