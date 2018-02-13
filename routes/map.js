@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const ensureLogin = require("connect-ensure-login");
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 
-router.get("/", function(req, res, next) {
+router.get("/", ensureLoggedIn(), (req, res, next) => {
   res.render("events/map");
 });
 
