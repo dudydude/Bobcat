@@ -40,12 +40,32 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   });
 });
 
+// show event page
+
+router.get("/:eventId", (req, res, next) => {
+  Event.findById(req.params.eventId, (err, event) => {
+    if (err) return next(err);
+    res.render("events/event", {
+      title: "event details - " + event.name,
+      event: event
+    });
+  });
+});
+
 // edit specific event
 
 router.get("/:id/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.findById(req.params.id, (err, event) => {
-    if (err) return next(err);
-    res.render("events/edit");
+    if (err) {
+      return next(err);
+    }
+    if (event.creator.equals(req.user._id)) {
+      res.render("events/edit", { event });
+    } else
+      res.render("events/event", {
+        title: "event details - " + event.name,
+        event: event
+      });
   });
 });
 

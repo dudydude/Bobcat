@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
-  eventTime: Date,
-  venue: String,
+  name: { type: String, required: true },
+  date: { type: Date, required: true },
+  venue: { type: String, required: true },
+  description: String,
   // venue: { type: Schema.Types.ObjectId, ref: "Venue" },
   creator: { type: Schema.Types.ObjectId, ref: "User" },
-  description: String,
   genre: { type: String, enum: ["Rave", "Smooth", "Mosh", "Nod", "Groove"] }
 });
 

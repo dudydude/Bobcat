@@ -1,4 +1,14 @@
-<p>hello</p>
-<p> it's <%=event.name%> tonight</p>
+<p>BOBCAT</p>
+<h1><%=event.name%></h1>
 
-<button href = "/events/edit">Edit event</button>
+<h3>Event description: <span><%= event.description %></span></h3>
+
+<h3>Date and time: <span><%= event.date %></span></h3>
+
+<h3>Venue: <span><%= event.venue %></span></h3>
+
+<% if (event.creator.equals(user._id)) { %>
+  <a href="/events/<%= event._id %>/edit">Edit event</a>
+<%} %>
+
+

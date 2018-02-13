@@ -1,0 +1,10 @@
+<h1>Events</h1>
+
+<ul>
+  <% events.forEach((event) => { %>
+    <li>
+    <%= event.name %> - <%= event.venue %> - <%= event.eventTime %>
+    <a href="/events/<%= event._id %>">View Details</a>
+    </li>
+  <% }) %>
+</ul>
