@@ -52,6 +52,19 @@ router.get("/:eventId", (req, res, next) => {
   });
 });
 
+// show all events
+
+router.get("/", (req, res, next) => {
+  Event.find({}, (err, events) => {
+    if (err) return next(err);
+
+    res.render("events/listings", {
+      title: "events",
+      events: events
+    });
+  });
+});
+
 // edit specific event
 
 router.get("/:id/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
