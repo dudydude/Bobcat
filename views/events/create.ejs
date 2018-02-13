@@ -6,8 +6,14 @@
     </label>
     <br>
     <label>Address</label>
-  <input id="user_input_autocomplete_address" placeholder="Votre adresse...">
+    <input id="searchTextField" name="searchTextField" class="form-control" placeholder="Start typing your address...">
     </br>
+    <label>lat</label>
+  <input id="venue_lat" name="venue_lat" hidden>
+  <label>long</label>
+  <input id="venue_long" name="venue_long" hidden>
+  <label>adress</label>
+  <input id="adress" name="adress" hidden>
     <label>
         Date :
     </label>
@@ -37,13 +43,9 @@
     <button type="submit" class="waves-effect waves-light btn">Create</button>
 </form>
 
-<script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8">
-</script>
-
-<!-- Custom JS code to bind to Autocomplete API -->
-<!-- find it here: https://github.com/lewagon/google-place-autocomplete/blob/gh-pages/autocomplete.js -->
-<!-- We'll detail this file in the article -->
-<script type="text/javascript" src="javascript/map.js"></script>
 
 </div>
+
+<script type="text/javascript" src="/javascript/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initialize" async defer>
+

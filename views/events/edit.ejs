@@ -5,10 +5,15 @@
         <input type="text" name="name"  >
     </label>
     <br>
-    <label>
-        Location:
-        <input type="text" name="venue">
-    </label>
+    <label>Address</label>
+    <input id="searchTextField" name="searchTextField" class="form-control" placeholder="Start typing your address...">
+    </br>
+    <label>lat</label>
+  <input id="venue_lat" name="venue_lat" hidden>
+  <label>long</label>
+  <input id="venue_long" name="venue_long" hidden>
+  <label>adress</label>
+  <input id="adress" name="adress" hidden>
     </br>
     <label>
         Date :
@@ -42,3 +47,5 @@
 <form method= "post" action="/events/<%= event._id %>/delete">
 <button name="delete">Delete event</button> 
 </form>
+<script type="text/javascript" src="/javascript/maps.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initialize" async defer>

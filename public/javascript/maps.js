@@ -2,63 +2,59 @@ var autocomplete, map, marker;
 
 console.log("it works");
 function initMap() {
-  var uluru = { lat: -25.363, lng: 131.044 };
   var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: uluru
+    center: { lat: 48.860342, lng: 2.341932 },
+    zoom: 14
   });
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
+
+  var infoWindow = new google.maps.InfoWindow({ map: map });
+
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent("Location found.");
+        map.setCenter(pos);
+      },
+      function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      }
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+}
+
+// Use to display the autocomplete form + grab data from it (LAT + LONG)
+
+function initialize() {
+  var input = document.getElementById("searchTextField");
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  google.maps.event.addListener(autocomplete, "place_changed", function() {
+    var venue = autocomplete.getPlace();
+    document.getElementById("searchTextField").value = venue.name;
+    document.getElementById("adress").value = venue.formatted_address;
+    document.getElementById("venue_lat").value = venue.geometry.location.lat();
+    document.getElementById("venue_long").value = venue.geometry.location.lng();
+    //alert("This function is working!");
+    //alert(venue.formatted_address);
+    // alert(place.address_components[0].long_name);
   });
 }
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(
-// //       function(position) {
-//         var center = {
-//           lat: position.coords.latitude,
-//           lng: position.coords.longitude
-//         };
-
-//         map = new google.maps.Map(document.getElementById("map"), {
-//           center: center,
-//           scrollwheel: false,
-//           zoom: 12
-//         });
-
-//         var input = document.getElementById("search");
-//         autocomplete = new google.maps.places.Autocomplete(input);
-//       },
-//       function() {
-//         document.getElementById("map").innerHTML =
-//           "Error in the geolocation service.";
-//       }
-//     );
-//   } else {
-//     document.getElementById("map").innerHTML =
-//       "Browser does not support geolocation.";
-//   }
-// }
-
-// var loadGoogleInfo = function() {
-//   // Clear markers if they are setted
-//   if (marker) {
-//     marker.setMap(null);
-//   }
-
-//   // Center the map
-//   var place = autocomplete.getPlace();
-//   map.setCenter({
-//     lat: place.geometry.location.lat(),
-//     lng: place.geometry.location.lng()
-//   });
-
-//   // Create the new marker
-//   marker = new google.maps.Marker({
-//     position: {
-//       lat: place.geometry.location.lat(),
-//       lng: place.geometry.location.lng()
-//     },
-//     map: map,
-//     title: place.name
-//   });
+google.maps.event.addDomListener(window, "load", initialize);
