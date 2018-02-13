@@ -5,10 +5,8 @@
         <input type="text" name="name">
     </label>
     <br>
-    <label>
-        Location:
-        <input type="text" name="venue">
-    </label>
+    <label>Address</label>
+  <input id="user_input_autocomplete_address" placeholder="Votre adresse...">
     </br>
     <label>
         Date :
@@ -38,4 +36,14 @@
     </label> 
     <button type="submit" class="waves-effect waves-light btn">Create</button>
 </form>
+
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8">
+</script>
+
+<!-- Custom JS code to bind to Autocomplete API -->
+<!-- find it here: https://github.com/lewagon/google-place-autocomplete/blob/gh-pages/autocomplete.js -->
+<!-- We'll detail this file in the article -->
+<script type="text/javascript" src="javascript/map.js"></script>
+
 </div>
