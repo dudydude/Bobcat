@@ -20,26 +20,23 @@
 
 <h1 id="user-header" user-id="<%= user._id %>"><%= user.username%>'s events</h1>
 
-
-<ul class="collapsible" data-collapsible="collapsible">
-<% events.forEach((event) => { %>
-<li>
-  <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
-  <div class="collapsible-body"><a href="#!" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
-  <span><%= event.date %></span>
-  <br><a href="/events/<%= event._id %>">View Details</a><br>
+<ul class="collapsible attending" data-collapsible="collapsible">
+<li id = "bookmarks">
+  <div class="collapsible-header"><i class="material-icons">location_on</i> Event name</div>
+  <div class="collapsible-body"><a href= "#!" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
+  <span></span>
+  <br><a></a><br>
   </div>
 </li>
-<% }) %>
 </ul>
 
 <h1>Upcoming</h1>
 
 <ul class="collapsible" data-collapsible="accordion">
 <% events.forEach((event) => { %>
-<li>
+<li class = "<%= event.name %>">
   <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
-  <div class="collapsible-body"><a id="<%= event._id %>" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
+  <div class="collapsible-body"><a href= "#!" id="<%= event._id %>" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
   <span><%= event.date %></span>
   <br><a href="/events/<%= event._id %>">View Details</a><br>
   </div>

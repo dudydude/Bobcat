@@ -98,7 +98,10 @@ router.get("/:eventId", (req, res, next) => {
 router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.find({}, (err, events) => {
     if (err) return next(err);
-    res.render(`events/listings`, { userId: req.params.id, events: events });
+    res.render(`events/listings`, {
+      userId: req.params.id,
+      events: events
+    });
   });
 });
 
@@ -107,16 +110,6 @@ router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 router.post("/bookmark", (req, res, next) => {
   const userId = req.body.user;
   const eventId = req.body.event;
-
-  // User.findByIdAndUpdate(
-  //   userId,
-  //   { $push: { eventsAttending: eventId } },
-  //   (err, updatedUser) => {
-  //     Event.findById(eventId, (err, event) => {
-  //       res.json({ event });
-  //     });
-  //   }
-  // );
 
   User.findById(userId, (err, user) => {
     user.eventAttending.push(eventId);
