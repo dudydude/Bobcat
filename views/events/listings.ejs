@@ -17,13 +17,27 @@
 </div>
 </nav>
 
+<h1>My events</h1>
+
+<ul class="collapsible" data-collapsible="accordion">
+<% events.forEach((event) => { %>
+<li>
+  <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
+  <div class="collapsible-body"><a href="#!" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
+  <span><%= event.date %></span>
+  <br><br><a href="/events/<%= event._id %>">View Details</a><br>
+  </div>
+</li>
+<% }) %>
+</ul>
+
 <h1>Upcoming</h1>
 
 <ul class="collapsible" data-collapsible="accordion">
 <% events.forEach((event) => { %>
 <li>
   <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
-  <div class="collapsible-body"><a href="#!" class="secondary-content"><i class="small material-icons" id = "pawprint">pets</i></a>
+  <div class="collapsible-body"><a href="#!" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
   <span><%= event.date %></span>
   <br><br><a href="/events/<%= event._id %>">View Details</a><br>
   </div>
