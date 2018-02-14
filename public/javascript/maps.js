@@ -1,4 +1,5 @@
 var autocomplete, map, marker;
+
 // console.log("it works");
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
