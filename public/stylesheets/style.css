@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -15,4 +14,26 @@ a {
 
 .blueColour {
   color: #0056b3;
+
+form {
+  padding: 2%;
+  margin-top: 0;
+}
+
+.form-header {
+  height: 40%;
+  text-align: center;
+  padding: 1%;
+  color: white;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 1%;
+}
+
+.search label {
+  width: 30%;
 }

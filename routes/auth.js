@@ -64,7 +64,7 @@ router.post(
   "/login",
   ensureLoggedOut(),
   passport.authenticate("local-login", {
-    successRedirect: "/map",
+    successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true
   })

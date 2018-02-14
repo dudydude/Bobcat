@@ -24,6 +24,8 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     creator: req.user._id
   };
 
+  // catching the venue data (from hidden input)
+
   const venueInfo = {
     name: req.body.searchTextField,
     adress: req.body.adress,
@@ -33,29 +35,12 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     }
   };
 
-  //   console.log(newEvent);
-  //   newEvent.save(err =>
-  //     { if (req.body.searchTextField ===  checkVenue)
-  //       {
-  //        newVenue.save(err => {
-
-  //        })
-  //       }
-  //     const event = newEvent;
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //     // redirect to the event page if it saves
-  //     return res.redirect(`/events/${event._id}`);
-  //   });
-  // });
+  // creating new instance
 
   const newVenue = new Venue(venueInfo);
   const newEvent = new Event(eventInfo);
-  //const checkVenue = Venue.findOne({ name: req.body.searchTextField })//,(function (err, results) {
 
-  console.log(newEvent);
-  // console.log("DEBUG CHECK VENUE" + checkVenue);
+  // saving a new event in the db
 
   newEvent.save(err => {
     const event = newEvent;
@@ -63,10 +48,14 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
       return next(err);
     }
 
+    // If there's no error, the script will try to find
+    //if there is an occurence that already exist in the venue collection
+
     Venue.findOne({ name: req.body.searchTextField }, function(err, result) {
       if (err) {
         console.error;
       }
+      // If the find one doesn't return any result then we add the venue in our db
       if (!result) {
         newVenue.save(err => {
           const venue = newVenue;
