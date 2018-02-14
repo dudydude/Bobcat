@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -18,13 +17,9 @@ a {
   margin-right: auto;
 } */
 
-.container {
-  margin: 0px;
-  padding: 0px;
-}
 form {
   padding: 2%;
-  margin: 0;
+  margin-top: 0;
 }
 
 .form-header {
@@ -32,4 +27,15 @@ form {
   text-align: center;
   padding: 1%;
   color: white;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 1%;
+}
+
+.search label {
+  width: 30%;
 }
