@@ -1,10 +1,29 @@
+<nav>
+<div class="nav-wrapper">
+  <a href="/map" class="brand-logo">Bobcat</a>
+  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+  <ul class="right hide-on-med-and-down">
+  <li> <a href = '/events/new'>create</a> </li>
+  <li> <a href = '/events/'>view all</a> </li>
+  
+  <li><a href = '/logout'>logout</a>
+</li>
+  </ul>
+  <ul class="side-nav" id="mobile-demo">
+  <li><a href = '/logout'>logout</a>
+  </li>
+  <li> <a href = '/events/new'>create</a> </li>
+  </ul>
+</div>
+</nav>
+
 <h1>Upcoming</h1>
 
 <ul class="collapsible" data-collapsible="accordion">
 <% events.forEach((event) => { %>
 <li>
   <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
-  <div class="collapsible-body"><a href="#!" class="secondary-content"><i class="small material-icons">pets</i></a>
+  <div class="collapsible-body"><a href="#!" class="secondary-content"><i class="small material-icons" id = "pawprint">pets</i></a>
   <span><%= event.date %></span>
   <br><br><a href="/events/<%= event._id %>">View Details</a><br>
   </div>
