@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Event = require("../models/event");
 const Venue = require("../models/venue");
+const User = require("../models/user");
 
 const ensureLogin = require("connect-ensure-login");
 
@@ -94,13 +95,35 @@ router.get("/:eventId", (req, res, next) => {
 
 // show all events
 
-router.get("/", (req, res, next) => {
+router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.find({}, (err, events) => {
     if (err) return next(err);
+    res.render(`events/listings`, { userId: req.params.id, events: events });
+  });
+});
 
-    res.render("events/listings", {
-      title: "events",
-      events: events
+// add event to user's bookmarks
+
+router.post("/bookmark", (req, res, next) => {
+  const userId = req.body.user;
+  const eventId = req.body.event;
+
+  // User.findByIdAndUpdate(
+  //   userId,
+  //   { $push: { eventsAttending: eventId } },
+  //   (err, updatedUser) => {
+  //     Event.findById(eventId, (err, event) => {
+  //       res.json({ event });
+  //     });
+  //   }
+  // );
+
+  User.findById(userId, (err, user) => {
+    user.eventAttending.push(eventId);
+    user.save(err => {
+      Event.findById(eventId, (err, event) => {
+        res.json({ event });
+      });
     });
   });
 });
