@@ -6,14 +6,14 @@ function initMap() {
     center: { lat: 48.860342, lng: 2.341932 },
     zoom: 14
   });
-  const venue_list = Venue.find({});
 
+  var json1 = marker;
   const myLatLng = [];
-  console.log("DEBUG VENUE_LIST" + venue_list);
+  //  console.log("DEBUG VENUE_LIST" + venue_list);
   var marker = new google.maps.Marker({
     position: myLatLng,
-    map: map,
-    title: { venue_name: venue.name }
+    map: map
+    //title: { venue_name: venue.name }
   });
 
   var infoWindow = new google.maps.InfoWindow({ map: map });
@@ -28,7 +28,7 @@ function initMap() {
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent("Location found.");
+        infoWindow.setContent("Location found");
         map.setCenter(pos);
       },
       function() {
@@ -67,4 +67,4 @@ function initialize() {
     // alert(place.address_components[0].long_name);
   });
 }
-google.maps.event.addDomListener(window, "load", initialize);
+//google.maps.event.addDomListener(window, "load", initialize);

@@ -1,67 +1,69 @@
-<div class="container">
-<form method="POST" action="/events">
-    <label>
-        Name of the event:
-        <input type="text" name="name">
-    </label>
-    <br>
-    <label>Address</label>
-    <input id="searchTextField" name="searchTextField" class="form-control" placeholder="Start typing your address...">
-    </br>
-    <label>lat</label>
-  <input id="venue_lat" name="venue_lat" hidden>
-  <label>long</label>
-  <input id="venue_long" name="venue_long" hidden>
-  <label>adress</label>
-  <input id="adress" name="adress" hidden>
- 
-    <label>
-        Date :
-    </label>
+<div class="container col s12 m4 l8 z-depth-3">
 
-    <input type="text" name="date" class="datepicker">
+  <div class=" form-header red lighten-1 z-depth-1">
+    <h3> Create new event </h3>
+  </div>
+
+  <form method="POST" action="/events">
+    <label>
+      Name of the event:
+    </label>
+    <input type="text" name="name">
+    <br>
+    <label>Address
+    </label>
+    <input id="searchTextField" name="searchTextField" class="form-control" placeholder="Start typing your address...">
+    <input id="venue_lat" name="venue_lat" hidden>
+    <input id="venue_long" name="venue_long" hidden>
+    <input id="adress" name="adress" hidden>
+
+    <label>
+      Date :
+    </label>
+    <input type="date" name="date" class="datepicker">
+
     </br>
     <label>
-        Description :
-        </label>
-        <input type="text" id="textarea1" class="materialize-textarea" name="description">
+      Description :
+    </label>
+    <input type="text" id="textarea1" class="materialize-textarea" name="description">
     </br>
     <!-- <label> Upload a picture
         <input type="file" name="photo">
     </label>-->
     <label> Choose the mood of the event :
-    <br>
-    <br>
-    <span>
-      <input class="with-gap" name="group1" type="radio" id="test1" />
-      <label for="test1">Rave</label>
-    </span>
-    <span>
-      <input class="with-gap" name="group1" type="radio" id="test2" />
-      <label for="test2">Mosh</label>
-    </span>
-    <span>
-      <input class="with-gap" name="group1" type="radio" id="test3"  />
-      <label for="test3">Groove</label>
-    </span>
-    <span>
-      <input class="with-gap" name="group1" type="radio" id="test4"  />
-      <label for="test4">Smooth</label>
-    </span>
-    <span>
-      <input class="with-gap" name="group1" type="radio" id="test5" />
-      <label for="test5">Nod</label>
-    </span>
+      <br>
+      <br>
+      <span>
+        <input class="with-gap" name="group1" type="radio" id="test1" />
+        <label for="test1">Rave</label>
+      </span>
+      <span>
+        <input class="with-gap" name="group1" type="radio" id="test2" />
+        <label for="test2">Mosh</label>
+      </span>
+      <span>
+        <input class="with-gap" name="group1" type="radio" id="test3" />
+        <label for="test3">Groove</label>
+      </span>
+      <span>
+        <input class="with-gap" name="group1" type="radio" id="test4" />
+        <label for="test4">Smooth</label>
+      </span>
+      <span>
+        <input class="with-gap" name="group1" type="radio" id="test5" />
+        <label for="test5">Nod</label>
+      </span>
     </label>
     <br>
     <br>
- 
+
     <button type="submit" class="waves-effect waves-light btn">Create</button>
-</form>
+  </form>
 
 
 </div>
 
 <script type="text/javascript" src="/javascript/maps.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initialize" async defer>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initialize"
+  async defer>

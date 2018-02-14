@@ -17,3 +17,19 @@ a {
   margin-left: auto;
   margin-right: auto;
 } */
+
+.container {
+  margin: 0px;
+  padding: 0px;
+}
+form {
+  padding: 2%;
+  margin: 0;
+}
+
+.form-header {
+  height: 40%;
+  text-align: center;
+  padding: 1%;
+  color: white;
+}
