@@ -1,35 +1,44 @@
 <nav>
-<div class="nav-wrapper">
-  <a href="/map" class="brand-logo">Logo</a>
-  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-  <ul class="right hide-on-med-and-down">
-  <li> <a href = 'events/new'>create</a> </li>
-  <li> <a href = '/events/<%= user._id %>/all'>view all</a> </li>
-  
-  <li><a href = 'logout'>logout</a>
-</li>
-  </ul>
-  <ul class="side-nav" id="mobile-demo">
-  <li><a href = 'logout'>logout</a>
-  </li>
-  <li> <a href = 'events/new'>create</a> </li>
-  </ul>
-</div>
+  <div class="nav-wrapper">
+    <a href="/map" class="brand-logo">Logo</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <a href='events/new'>create</a>
+      </li>
+      <li>
+        <a href='/events/<%= user._id %>/all'>view all</a>
+      </li>
+
+      <li>
+        <a href='logout'>logout</a>
+      </li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li>
+        <a href='logout'>logout</a>
+      </li>
+      <li>
+        <a href='events/new'>create</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 
-<div class="search" >
+<div class="search">
   <label>Address :
-  <input id="filterInput" class="controls" type="text"
-        placeholder="Enter a location">
+    <input id="pac-input" type="text" placeholder="Enter a location">
   </label>
   <label>From :
-  <input type="date">
+    <input type="date">
   </label>
   <label>To :
-  <input type="date">
+    <input type="date">
   </label>
-  <button class="waves-effect waves-light btn">Search</button>
+
 </div>
 
 
@@ -41,16 +50,16 @@
 </div>
 
 
- <script type="text/javascript">
- var myEvent = <%- JSON.stringify(event) %>;
- </script>
+<script type="text/javascript">
+  var myEvent = <% - JSON.stringify(event) %>;
+</script>
 
 
 
 
 
-      <script type="text/javascript " src="/javascript/maps.js "></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initMap "
-        async defer>
+<script type="text/javascript " src="/javascript/maps.js "></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initMap "
+  async defer>
 
-        </script>
+  </script>
