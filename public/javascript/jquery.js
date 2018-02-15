@@ -4,7 +4,7 @@ $(document).ready(function() {
   $(".collapsible").collapsible();
 
   //click pawprint
-  var meow = new Audio("../sounds/Kitty-meow.mp3");
+  const meow = new Audio("/sounds/Kitty-meow.mp3");
 
   $(".pawprint").click(function() {
     meow.play();
@@ -24,6 +24,7 @@ $(document).ready(function() {
   });
 
   $("#delete-all").click(function() {
+    meow.play();
     let userId = $("#user-header").attr("user-id");
     console.log(userId);
     apiMethods

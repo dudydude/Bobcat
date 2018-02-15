@@ -20,7 +20,7 @@
 
 <h1 id="user-header" user-id="<%= user._id %>">Upcoming</h1>
 
-<a href= '/events/<%= user._id %>/myevents/' class="waves-effect waves-light btn" id="myevs"><i class="material-icons right">pets</i>my events</a>
+<a href= '/events/<%= user._id %>/myevents/' id= "myevs" class="waves-effect waves-light btn"><i class="material-icons right">pets</i>my events</a>
 
 <ul class="collapsible" data-collapsible="collapsible">
 <% events.forEach((event) => { %>
