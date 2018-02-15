@@ -12,9 +12,10 @@
 </nav>
 
 
-<div class="search">
+<div class="search" >
   <label>Address :
-  <input type="text">
+  <input id="filterInput" class="controls" type="text"
+        placeholder="Enter a location">
   </label>
   <label>From :
   <input type="date">
@@ -38,8 +39,7 @@
  var myEvent = <%- JSON.stringify(event) %>;
  </script>
 
-<pre><%= event %> </pre>
-<pre><%= venue %> </pre>
+
 
 
 
