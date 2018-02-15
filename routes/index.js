@@ -9,17 +9,18 @@ router.get("/", (req, res, next) => {
     .populate("venue")
     .exec(function(err, events) {
       //console.log(events.localisation);
-
-      res.render("events/map", {
-        title: "ça marche",
-        event: events
-        //venue: venues
-      });
+      if (req.user) {
+        res.render("events/map", {
+          title: "ça marche",
+          event: events
+          //venue: venues
+        });
+      } else res.render("index");
     });
 });
 
-router.get("/logout", ensureLoggedIn(), (req, res, next) => {
-  res.render("auth/login");
-});
+// router.get("/logout", ensureLoggedIn(), (req, res, next) => {
+//   res.render("auth/login");
+// });
 
 module.exports = router;
