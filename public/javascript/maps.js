@@ -2,47 +2,71 @@ var autocomplete, map, marker;
 
 // var markerCenter = { lat: myLatLng[0].loc.lat, lng: myLatLng[0].loc.lng };
 // console.log(markerCenter);
+
+console.log(myEvent[0].venue.loc.lng);
+
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 48.860342, lng: 2.341932 },
     zoom: 14
   });
 
-  function containsAny(source, target) {
-    var result = source.filter(function(item) {
-      return target.indexOf(item) > -1;
-    });
-    return result.length > 0;
-  }
-
   for (i = 0; i <= myEvent.length; i++) {
+    var contentString = `<div id="iw-container"><h4 id="firstHeading" class="firstHeading">${
+      myEvent[i].name
+    }</h4> 
+    <h5>Description :  </h5>
+    <p>${myEvent[i].description}</p>
+    <button class="class="waves-effect waves-light btn">
+    <a href="/events/${myEvent[i]._id}"> see more</a></button></div>
+    `;
+
     var marker = new google.maps.Marker({
-      position: { lat: myEvent[i].loc.lat, lng: myEvent[i].loc.lng },
-      map: map
+      position: {
+        lat: myEvent[i].venue.loc.lat,
+        lng: myEvent[i].venue.loc.lng
+      },
+      map: map,
+      contentString: contentString
+    });
+
+    var infowindow = new google.maps.InfoWindow({});
+
+    marker.addListener("click", function() {
+      infowindow.setContent(this.contentString);
+      infowindow.open(map, this);
+      map.setCenter(this.getPosition());
     });
   }
+}
 
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+function autocompleteSearch() {
+  var input = document.getElementById("filterInput");
+  var autocomplete = new google.maps.places.Autocomplete(input);
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent("Location found");
-        map.setCenter(pos);
-      },
-      function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      }
-    );
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
+  autocomplete.bindTo("bounds", map);
+}
+
+// Try HTML5 geolocation.
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent("Location found");
+      map.setCenter(pos);
+    },
+    function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    }
+  );
+} else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -67,4 +91,5 @@ function initialize() {
     document.getElementById("venue_long").value = venue.geometry.location.lng();
   });
 }
+
 //google.maps.event.addDomListener(window, "load", initialize);
