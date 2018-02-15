@@ -30,7 +30,9 @@
       <p><%= event.name %> @ <%= event.venue %><br>
       <%= event.date %>
       </p>
-      <a href="#!" class="secondary-content deleteprint"><i class="material-icons">pets</i></a>
+      <a href= "/events/<%= user.id %>/myevents" id = "<%= event.id %>"class="secondary-content deleteprint"><i class="material-icons">pets</i></a>
     </li>
     <% }) %>
   </ul>
+
+  <script src = "/javascript/jquery.js"></script>

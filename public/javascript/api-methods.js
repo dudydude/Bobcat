@@ -5,11 +5,14 @@ const apiMethods = {
       .then(res => res.data);
   },
   delete: function(eventId, userId) {
-    return axios
-      .delete("/events/" + eventId, { user: userId })
-      .then(res => res.data);
+    return axios.delete(`/events/${eventId}/${userId}/`).then(res => res.data);
   },
-  deleteAll: function(eventId, userId) {
-    return axios.delete("/myevents", { user: userId }).then(res => res.data);
+  deleteAll: function(userId) {
+    return axios
+      .delete(`/events/${userId}/`)
+      .then(res => res.data)
+      .catch(err => {
+        console.log(err);
+      });
   }
 };

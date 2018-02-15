@@ -136,15 +136,15 @@ router.get("/:id/myevents", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 //delete from user's bookmarked events
 
-router.delete("/:eventId", (req, res, next) => {
-  const eventId = req.params.id;
-  User.findById(req.body.user, (err, user) => {
+router.delete("/:eventId/:userId", (req, res, next) => {
+  const eventId = req.params.eventId;
+  User.findById(req.params.userId, (err, user) => {
     user.eventAttending.splice(user.eventAttending.indexOf(eventId), 1);
     user.save(err => {
       if (err) {
         throw err;
       }
-      next();
+      return res.end();
     });
   });
 });
@@ -155,15 +155,13 @@ router.delete("/:eventId", (req, res, next) => {
 //   res.render("/events/userevents");
 // });
 
-router.delete("/myevents", (res, req, next) => {
-  User.findById(req.body.user, (err, user) => {
-    user.eventAttending = [];
-    user.save(err => {
-      if (err) {
-        throw err;
-      }
-      next();
-    });
+router.delete("/:userId", (req, res, next) => {
+  console.log(req.params);
+  User.findByIdAndUpdate(req.params.userId, {
+    $unset: { eventAttending: "" }
+  }).exec(err => {
+    console.log(err);
+    res.end();
   });
 });
 

@@ -4,8 +4,10 @@ $(document).ready(function() {
   $(".collapsible").collapsible();
 
   //click pawprint
+  var meow = new Audio("../sounds/Kitty-meow.mp3");
 
   $(".pawprint").click(function() {
+    meow.play();
     $(this).toggleClass("blueColour");
     let eventId = $(this).attr("id");
     apiMethods.bookmark(eventId, userId).then(bookmarkedEvent => {
@@ -14,15 +16,24 @@ $(document).ready(function() {
   });
 
   $(".deleteprint").click(function() {
-    $(this).toggleClass("blueColour");
+    let userId = $("#user-header").attr("user-id");
     let eventId = $(this).attr("id");
-    apiMethods.delete(eventId, userId).then(bookmarkedEvent => {
-      console.log(bookmarkedEvent);
+    apiMethods.delete(eventId, userId).then(deletedEvent => {
+      console.log(deletedEvent);
     });
   });
 
   $("#delete-all").click(function() {
-    apiMethods.deleteAll(eventId, userId);
+    let userId = $("#user-header").attr("user-id");
+    console.log(userId);
+    apiMethods
+      .deleteAll(userId)
+      .then(result => {
+        return;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   });
 
   $(".datepicker").pickadate({
