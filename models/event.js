@@ -9,11 +9,7 @@ const eventSchema = new Schema({
   picture: String,
   //venue: { type: Schema.Types.ObjectId, ref: "Venue" },
   creator: { type: Schema.Types.ObjectId, ref: "User" },
-  genre: { type: String, enum: ["Rave", "Smooth", "Mosh", "Nod", "Groove"] },
-  loc: {
-    lng: String,
-    lat: String
-  }
+  genre: { type: String, enum: ["Rave", "Smooth", "Mosh", "Nod", "Groove"] }
 });
 
 module.exports = mongoose.model("Event", eventSchema);

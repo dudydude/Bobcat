@@ -4,6 +4,7 @@ const Event = require("../models/event");
 const Venue = require("../models/venue");
 const User = require("../models/user");
 const ensureLogin = require("connect-ensure-login");
+const mongoose = require("mongoose");
 // GET create event
 
 router.get("/new", function(req, res, next) {
@@ -13,22 +14,10 @@ router.get("/new", function(req, res, next) {
 // POST a new event
 
 router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  const eventInfo = {
-    name: req.body.name,
-    date: req.body.date,
-    description: req.body.description,
-    venue: req.body.searchTextField,
-    genre: req.body.genre,
-    creator: req.user._id,
-    loc: {
-      lng: req.body.venue_long,
-      lat: req.body.venue_lat
-    }
-  };
-
   // catching the venue data (from hidden input)
 
   const venueInfo = {
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.searchTextField,
     adress: req.body.adress,
     loc: {
@@ -37,38 +26,51 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     }
   };
 
+  console.log(venueInfo);
+
   // creating new instance
 
   const newVenue = new Venue(venueInfo);
-  const newEvent = new Event(eventInfo);
 
-  // saving a new event in the db
+  // If there's no error, the script will try to find
+  //if there is an occurence that already exist in the venue collection
 
-  newEvent.save(err => {
-    const event = newEvent;
+  Venue.findOne({ name: req.body.searchTextField }, function(err, result) {
     if (err) {
-      return next(err);
+      console.error;
     }
+    // If the find one doesn't return any result then we add the venue in our db
+    if (!result) {
+      newVenue.save(err => {
+        const venue = newVenue;
+        if (err) {
+          return next(err);
+        }
+      });
+    }
+    // saving a new event in the db
+    const eventInfo = {
+      name: req.body.name,
+      date: req.body.date,
+      description: req.body.description,
+      //venue: newVenue._id,
+      venue: venueInfo,
+      genre: req.body.genre,
+      creator: req.user._id
+    };
+    console.log(eventInfo);
 
-    // If there's no error, the script will try to find
-    //if there is an occurence that already exist in the venue collection
+    const newEvent = new Event(eventInfo);
 
-    Venue.findOne({ name: req.body.searchTextField }, function(err, result) {
+    newEvent.save(err => {
+      const event = newEvent;
       if (err) {
-        console.error;
+        return next(err);
       }
-      // If the find one doesn't return any result then we add the venue in our db
-      if (!result) {
-        newVenue.save(err => {
-          const venue = newVenue;
-          if (err) {
-            return next(err);
-          }
-        });
-      }
-    }),
+
       // redirect to the event page if it saves
-      res.redirect(`/events/${event._id}`);
+    });
+    res.redirect(`/events/${newEvent._id}`);
   });
 });
 
