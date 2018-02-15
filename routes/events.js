@@ -89,11 +89,15 @@ router.get("/:eventId", (req, res, next) => {
 router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.find({}, (err, events) => {
     if (err) return next(err);
+    events.sort(function(a, b) {
+      var dateA = new Date(a.date),
+        dateB = new Date(b.date);
+      return dateA - dateB;
+    });
     res.render(`events/listings`, {
       userId: req.params.id,
       events: events
     });
-    console.log(events);
   });
 });
 
@@ -145,11 +149,21 @@ router.delete("/:eventId", (req, res, next) => {
 
 //delete all bookmarks from user's bookmarks
 
-router.get("/:id/delete-all", (req, res, next) => {
-  res.render("/events/userevents");
-});
+// router.get("/:id/delete-all", (req, res, next) => {
+//   res.render("/events/userevents");
+// });
 
-router.delete("delete-all", (res, req, next) => {});
+router.delete("/myevents", (res, req, next) => {
+  User.findById(req.body.user, (err, user) => {
+    user.eventAttending = [];
+    user.save(err => {
+      if (err) {
+        throw err;
+      }
+      next();
+    });
+  });
+});
 
 // edit specific event
 

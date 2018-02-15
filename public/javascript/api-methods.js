@@ -8,5 +8,8 @@ const apiMethods = {
     return axios
       .delete("/events/" + eventId, { user: userId })
       .then(res => res.data);
+  },
+  deleteAll: function(eventId, userId) {
+    return axios.delete("/myevents", { user: userId }).then(res => res.data);
   }
 };
