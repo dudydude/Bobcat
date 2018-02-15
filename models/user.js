@@ -13,7 +13,7 @@ const userSchema = new Schema({
     required: true
   },
   password: String,
-  eventAttending: Array
+  eventAttending: [Schema.Types.ObjectId]
 });
 
 module.exports = mongoose.model("User", userSchema);

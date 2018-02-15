@@ -12,10 +12,9 @@ a {
   background-color: chartreuse;
 }
 
-/* .card-image {
-  margin-left: auto;
-  margin-right: auto;
-} */
+.blueColour {
+  color: #0056b3;
+}
 
 form {
   padding: 2%;

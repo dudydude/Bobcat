@@ -1,10 +1,11 @@
+
 <nav>
 <div class="nav-wrapper">
   <a href="/map" class="brand-logo">Bobcat</a>
   <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
   <ul class="right hide-on-med-and-down">
   <li> <a href = '/events/new'>create</a> </li>
-  <li> <a href = '/events/'>view all</a> </li>
+  <li> <a href = '/events/<%= user._id %>/all'>view all</a> </li>
   
   <li><a href = '/logout'>logout</a>
 </li>
@@ -17,18 +18,21 @@
 </div>
 </nav>
 
-<h1>Upcoming</h1>
+<h1 id="user-header" user-id="<%= user._id %>">Upcoming</h1>
 
-<ul class="collapsible" data-collapsible="accordion">
+<a href= '/events/<%= user._id %>/myevents/' class="waves-effect waves-light btn" id="myevs"><i class="material-icons right">pets</i>my events</a>
+
+<ul class="collapsible" data-collapsible="collapsible">
 <% events.forEach((event) => { %>
-<li>
+<li class = "<%= event.name %>">
   <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
-  <div class="collapsible-body"><a href="#!" class="secondary-content"><i class="small material-icons" id = "pawprint">pets</i></a>
+  <div class="collapsible-body"><a href= "#!" id="<%= event._id %>" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
   <span><%= event.date %></span>
-  <br><br><a href="/events/<%= event._id %>">View Details</a><br>
+  <br><a href="/events/<%= event._id %>">View Details</a><br>
   </div>
 </li>
 <% }) %>
 </ul>
 
 
+<script src = "/javascript/jquery.js"></script>
