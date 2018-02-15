@@ -18,10 +18,14 @@
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li>
-        <a href='logout'>logout</a>
+        <a href='events/new'>create</a>
       </li>
       <li>
-        <a href='events/new'>create</a>
+        <a href='/events/<%= user._id %>/all'>view all</a>
+      </li>
+
+      <li>
+        <a href='logout'>logout</a>
       </li>
     </ul>
   </div>
@@ -33,10 +37,10 @@
     <input id="pac-input" type="text" placeholder="Enter a location">
   </label>
   <label>From :
-    <input type="date">
+    <input type="text" class="datepicker" id="startDate">
   </label>
   <label>To :
-    <input type="date">
+    <input type="text" class="datepicker" id="endDate">
   </label>
 
 </div>
@@ -57,6 +61,9 @@
 
 
 
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="/javascript/jquery.js"></script>
 
 <script type="text/javascript " src="/javascript/maps.js "></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initMap "
