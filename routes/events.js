@@ -77,13 +77,15 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 // show event page
 
 router.get("/:eventId", (req, res, next) => {
-  Event.findById(req.params.eventId, (err, event) => {
-    if (err) return next(err);
-    res.render("events/event", {
-      title: "event details - " + event.name,
-      event: event
+  Event.findById(req.params.eventId)
+    .populate("venue")
+    .exec(function(err, event) {
+      if (err) return next(err);
+      res.render("events/event", {
+        title: "event details - " + event.name,
+        event: event
+      });
     });
-  });
 });
 
 // show all events
@@ -106,6 +108,7 @@ router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 // add event to user's bookmarks
 
 router.post("/bookmark", (req, res, next) => {
+  console.log("DEBUG req.body", req.body);
   const userId = req.body.user;
   const eventId = req.body.event;
 
