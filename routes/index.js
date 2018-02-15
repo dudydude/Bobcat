@@ -39,4 +39,8 @@ router.get("/", (req, res, next) => {
   });
 });
 
+router.get("/logout", ensureLoggedIn(), (req, res, next) => {
+  res.render("auth/login");
+});
+
 module.exports = router;

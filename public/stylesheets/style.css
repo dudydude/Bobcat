@@ -9,11 +9,15 @@ a {
 #map {
   width: 100%;
   height: 500px;
-  background-color: chartreuse;
+  background-color: #26a69a;
 }
 
 .blueColour {
   color: #0056b3;
+}
+
+.greenColour {
+  color: #26a69a;
 }
 
 form {

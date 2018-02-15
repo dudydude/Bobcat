@@ -128,6 +128,29 @@ router.get("/:id/myevents", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     });
 });
 
+//delete from user's bookmarked events
+
+router.delete("/:eventId", (req, res, next) => {
+  const eventId = req.params.id;
+  User.findById(req.body.user, (err, user) => {
+    user.eventAttending.splice(user.eventAttending.indexOf(eventId), 1);
+    user.save(err => {
+      if (err) {
+        throw err;
+      }
+      next();
+    });
+  });
+});
+
+//delete all bookmarks from user's bookmarks
+
+router.get("/:id/delete-all", (req, res, next) => {
+  res.render("/events/userevents");
+});
+
+router.delete("delete-all", (res, req, next) => {});
+
 // edit specific event
 
 router.get("/:id/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {

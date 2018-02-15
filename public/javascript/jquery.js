@@ -13,6 +13,14 @@ $(document).ready(function() {
     });
   });
 
+  $(".deleteprint").click(function() {
+    $(this).toggleClass("blueColour");
+    let eventId = $(this).attr("id");
+    apiMethods.delete(eventId, userId).then(bookmarkedEvent => {
+      console.log(bookmarkedEvent);
+    });
+  });
+
   $(".datepicker").pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year,
