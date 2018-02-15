@@ -19,7 +19,11 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     description: req.body.description,
     venue: req.body.searchTextField,
     genre: req.body.genre,
-    creator: req.user._id
+    creator: req.user._id,
+    loc: {
+      lng: req.body.venue_long,
+      lat: req.body.venue_lat
+    }
   };
 
   // catching the venue data (from hidden input)
