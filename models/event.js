@@ -6,6 +6,7 @@ const eventSchema = new Schema({
   date: { type: Date, required: true },
   description: String,
   venue: String,
+  picture: String,
   //venue: { type: Schema.Types.ObjectId, ref: "Venue" },
   creator: { type: Schema.Types.ObjectId, ref: "User" },
   genre: { type: String, enum: ["Rave", "Smooth", "Mosh", "Nod", "Groove"] }

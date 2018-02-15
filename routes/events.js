@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Event = require("../models/event");
 const Venue = require("../models/venue");
+var multer = require("multer");
 
 const ensureLogin = require("connect-ensure-login");
 

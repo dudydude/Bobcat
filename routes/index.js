@@ -13,21 +13,22 @@ router.get("/", (req, res, next) => {
   // });
 
   Venue.find({}, function(err, venues) {
-    console.log(venues);
+    //console.log(venues);
     if (err) return next(err);
     const test = venues.map(element => {
       return element.name;
     });
-    console.log(test);
+    //console.log(test);
 
     Event.find({ venue: test }, function(err, events) {
       if (err) return next(err);
-      // console.log("venue loc" + test);
-      res.render("events/map", {
-        title: "ça marche",
-        venue: venues,
-        event: events
-      });
+      if (req.user)
+        res.render("events/map", {
+          title: "ça marche",
+          venue: venues,
+          event: events
+        });
+      else res.render("index");
     });
 
     //   var eventsList = events;
@@ -35,7 +36,7 @@ router.get("/", (req, res, next) => {
     //     var eventVenue = eventsList[i].venue;
     //     console.log("LOG EVENTS ==>" + eventVenue);
     //   }
-    // } else res.render("index");
+    // }
   });
 });
 
