@@ -9,11 +9,15 @@ a {
 #map {
   width: 100%;
   height: 500px;
-  background-color: chartreuse;
+  background-color: #26a69a;
 }
 
 .blueColour {
   color: #0056b3;
+}
+
+.greenColour {
+  color: #26a69a;
 }
 
 form {
@@ -26,7 +30,7 @@ form {
   text-align: center;
   padding: 1%;
   color: white;
-}
+
 
 .search {
   display: flex;
@@ -37,4 +41,12 @@ form {
 
 .search label {
   width: 30%;
+}
+
+#index-body {
+  background-color: #3949ab;
+}
+
+a {
+  text-decoration: none;
 }

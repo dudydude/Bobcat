@@ -77,13 +77,15 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 // show event page
 
 router.get("/:eventId", (req, res, next) => {
-  Event.findById(req.params.eventId, (err, event) => {
-    if (err) return next(err);
-    res.render("events/event", {
-      title: "event details - " + event.name,
-      event: event
+  Event.findById(req.params.eventId)
+    .populate("venue")
+    .exec(function(err, event) {
+      if (err) return next(err);
+      res.render("events/event", {
+        title: "event details - " + event.name,
+        event: event
+      });
     });
-  });
 });
 
 // show all events
@@ -91,11 +93,15 @@ router.get("/:eventId", (req, res, next) => {
 router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.find({}, (err, events) => {
     if (err) return next(err);
+    events.sort(function(a, b) {
+      var dateA = new Date(a.date),
+        dateB = new Date(b.date);
+      return dateA - dateB;
+    });
     res.render(`events/listings`, {
       userId: req.params.id,
       events: events
     });
-    console.log(events);
   });
 });
 
@@ -119,13 +125,45 @@ router.post("/bookmark", (req, res, next) => {
 
 router.get("/:id/myevents", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.id;
-  User.findById(userId, (err, events) => {
-    if (err) return next(err);
-    res.render(`events/userevents`, {
-      userId: req.params.id,
-      events: req.params.eventAttending
+  User.findById(userId)
+    .populate("eventAttending")
+    .exec((err, user) => {
+      if (err) return next(err);
+      res.render(`events/userevents`, {
+        userId: req.params.id,
+        events: user.eventAttending
+      });
     });
-    console.log(events);
+});
+
+//delete from user's bookmarked events
+
+router.delete("/:eventId/:userId", (req, res, next) => {
+  const eventId = req.params.eventId;
+  User.findById(req.params.userId, (err, user) => {
+    user.eventAttending.splice(user.eventAttending.indexOf(eventId), 1);
+    user.save(err => {
+      if (err) {
+        throw err;
+      }
+      return res.end();
+    });
+  });
+});
+
+//delete all bookmarks from user's bookmarks
+
+// router.get("/:id/delete-all", (req, res, next) => {
+//   res.render("/events/userevents");
+// });
+
+router.delete("/:userId", (req, res, next) => {
+  console.log(req.params);
+  User.findByIdAndUpdate(req.params.userId, {
+    $unset: { eventAttending: "" }
+  }).exec(err => {
+    console.log(err);
+    res.end();
   });
 });
 

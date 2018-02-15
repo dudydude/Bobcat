@@ -78,6 +78,7 @@ function initMap() {
       map: map,
       contentString: contentString
     });
+    console.log(marker);
 
     var infowindow = new google.maps.InfoWindow({});
 

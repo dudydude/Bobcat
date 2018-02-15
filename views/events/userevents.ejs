@@ -1,7 +1,7 @@
 
 <nav>
 <div class="nav-wrapper">
-  <a href="/map" class="brand-logo">Bobcat</a>
+  <a href="/" class="brand-logo">Bobcat</a>
   <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
   <ul class="right hide-on-med-and-down">
   <li> <a href = '/events/new'>create</a> </li>
@@ -20,6 +20,8 @@
 
 <h1 id="user-header" user-id="<%= user._id %>"><%= user.username%>'s events</h1>
 
+<a href= "/events/<%= user.id %>/myevents" class="waves-effect waves-light btn" id= "delete-all"><i class="material-icons right">pets</i>delete all</a>
+
 <ul class="collection">
 <% events.forEach((event) => { %>
     <li class="collection-item avatar">
@@ -28,7 +30,9 @@
       <p><%= event.name %> @ <%= event.venue %><br>
       <%= event.date %>
       </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">pets</i></a>
+      <a href= "/events/<%= user.id %>/myevents" id = "<%= event.id %>"class="secondary-content deleteprint"><i class="material-icons">pets</i></a>
     </li>
     <% }) %>
   </ul>
+
+  <script src = "/javascript/jquery.js"></script>

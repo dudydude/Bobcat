@@ -1,34 +1,14 @@
 <nav>
-  <div class="nav-wrapper">
-    <a href="/map" class="brand-logo">Logo</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse">
-      <i class="material-icons">menu</i>
-    </a>
-    <ul class="right hide-on-med-and-down">
-      <li>
-        <a href='events/new'>create</a>
-      </li>
-      <li>
-        <a href='/events/<%= user._id %>/all'>view all</a>
-      </li>
-
-      <li>
-        <a href='logout'>logout</a>
-      </li>
-    </ul>
-    <ul class="side-nav" id="mobile-demo">
-      <li>
-        <a href='events/new'>create</a>
-      </li>
-      <li>
-        <a href='/events/<%= user._id %>/all'>view all</a>
-      </li>
-
-      <li>
-        <a href='logout'>logout</a>
-      </li>
-    </ul>
-  </div>
+<div class="nav-wrapper">
+  <a href="/" class="brand-logo">Logo</a>
+  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+  <ul class="right hide-on-med-and-down">
+  <li> <a href = 'events/new'>create</a> </li>
+  <li> <a href = '/events/<%= user._id %>/all'>view all</a> </li>
+  
+  <li><a href = 'logout'>logout</a>
+</li>
+</div>
 </nav>
 
 
@@ -40,8 +20,9 @@
     <input type="text" class="datepicker" id="startDate">
   </label>
   <label>To :
-    <input type="text" class="datepicker" id="endDate">
+    <input type="text" class="timepicker" id="endDate">
   </label>
+  <button class="waves-effect waves-light btn">Submit</button>
 
 </div>
 
@@ -53,9 +34,8 @@
 <div id="map" class="center-align">
 </div>
 
-
 <script type="text/javascript">
-  var myEvent = <% - JSON.stringify(event) %>;
+  var myEvent = <%- JSON.stringify(event) %>;
 </script>
 
 
