@@ -18,21 +18,11 @@
 </div>
 </nav>
 
-<h1 id="user-header" user-id="<%= user._id %>"><%= user.username%>'s events</h1>
+<h1 id="user-header" user-id="<%= user._id %>">Upcoming</h1>
 
-<ul class="collapsible attending" data-collapsible="collapsible">
-<li id = "bookmarks">
-  <div class="collapsible-header"><i class="material-icons">location_on</i> Event name</div>
-  <div class="collapsible-body"><a href= "#!" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
-  <span></span>
-  <br><a></a><br>
-  </div>
-</li>
-</ul>
+<a href= '/events/<%= user._id %>/myevents/' class="waves-effect waves-light btn" id="myevs"><i class="material-icons right">pets</i>my events</a>
 
-<h1>Upcoming</h1>
-
-<ul class="collapsible" data-collapsible="accordion">
+<ul class="collapsible" data-collapsible="collapsible">
 <% events.forEach((event) => { %>
 <li class = "<%= event.name %>">
   <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>

@@ -91,6 +91,7 @@ router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
       userId: req.params.id,
       events: events
     });
+    console.log(events);
   });
 });
 
@@ -107,6 +108,20 @@ router.post("/bookmark", (req, res, next) => {
         res.json({ event });
       });
     });
+  });
+});
+
+//show user events page
+
+router.get("/:id/myevents", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  const userId = req.params.id;
+  User.findById(userId, (err, events) => {
+    if (err) return next(err);
+    res.render(`events/userevents`, {
+      userId: req.params.id,
+      events: req.params.eventAttending
+    });
+    console.log(events);
   });
 });
 
