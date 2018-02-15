@@ -3,9 +3,7 @@ const router = express.Router();
 const Event = require("../models/event");
 const Venue = require("../models/venue");
 const User = require("../models/user");
-
 const ensureLogin = require("connect-ensure-login");
-
 // GET create event
 
 router.get("/new", function(req, res, next) {
@@ -21,7 +19,11 @@ router.post("/", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     description: req.body.description,
     venue: req.body.searchTextField,
     genre: req.body.genre,
-    creator: req.user._id
+    creator: req.user._id,
+    loc: {
+      lng: req.body.venue_long,
+      lat: req.body.venue_lat
+    }
   };
 
   // catching the venue data (from hidden input)

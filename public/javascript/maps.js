@@ -2,17 +2,30 @@ var autocomplete, map, marker;
 
 // var markerCenter = { lat: myLatLng[0].loc.lat, lng: myLatLng[0].loc.lng };
 // console.log(markerCenter);
-
-console.log(myLatLng);
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 48.860342, lng: 2.341932 },
     zoom: 14
   });
 
-  for (i = 0; i <= myLatLng.length; i++) {
+  function containsAny(source, target) {
+    var result = source.filter(function(item) {
+      return target.indexOf(item) > -1;
+    });
+    return result.length > 0;
+  }
+
+  for (i = 0; i <= myVenue.length; i++) {
+    // var venue = myVenue[i].loc;
+    // var event = myEvent;
+
+    // alert(containsAny(venue[i].loc, event));
+
+    // if (venue[i].name);
+    //alert(event[i].venue);
+    //alert("hello  " + myVenue[i].loc);
     var marker = new google.maps.Marker({
-      position: { lat: myLatLng[i].loc.lat, lng: myLatLng[i].loc.lng },
+      position: { lat: myVenue[i].loc.lat, lng: myVenue[i].loc.lng },
       map: map
     });
   }
