@@ -108,6 +108,7 @@ router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 // add event to user's bookmarks
 
 router.post("/bookmark", (req, res, next) => {
+  console.log("DEBUG req.body", req.body);
   const userId = req.body.user;
   const eventId = req.body.event;
 

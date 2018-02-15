@@ -3,7 +3,7 @@ var autocomplete, map, marker;
 // var markerCenter = { lat: myLatLng[0].loc.lat, lng: myLatLng[0].loc.lng };
 // console.log(markerCenter);
 
-console.log(myEvent[0].venue.loc.lng);
+// console.log(myEvent[0].venue.loc.lng);
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -137,4 +137,20 @@ function initialize() {
   });
 }
 
+//event page map
+
+function initEventMap() {
+  var map = new google.maps.Map(document.getElementById("map"), {
+    center: event.venue.loc,
+    zoom: 14
+  });
+  var marker = new google.maps.Marker({
+    position: {
+      lat: event.venue.loc.lat,
+      lng: event.venue.loc.lng
+    },
+    map: map
+    // contentString: contentString
+  });
+}
 //google.maps.event.addDomListener(window, "load", initialize);
