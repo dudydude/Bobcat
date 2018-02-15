@@ -13,7 +13,7 @@ const userSchema = new Schema({
     required: true
   },
   password: String,
-  eventAttending: [Schema.Types.ObjectId]
+  eventAttending: [{ type: Schema.Types.ObjectId, ref: "Event" }]
 });
 
 module.exports = mongoose.model("User", userSchema);

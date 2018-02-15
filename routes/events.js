@@ -115,14 +115,15 @@ router.post("/bookmark", (req, res, next) => {
 
 router.get("/:id/myevents", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.id;
-  User.findById(userId, (err, events) => {
-    if (err) return next(err);
-    res.render(`events/userevents`, {
-      userId: req.params.id,
-      events: req.params.eventAttending
+  User.findById(userId)
+    .populate("eventAttending")
+    .exec((err, user) => {
+      if (err) return next(err);
+      res.render(`events/userevents`, {
+        userId: req.params.id,
+        events: user.eventAttending
+      });
     });
-    console.log(events);
-  });
 });
 
 // edit specific event
