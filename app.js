@@ -14,7 +14,9 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/bobcat");
+require("dotenv").config();
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
