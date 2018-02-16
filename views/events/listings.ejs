@@ -25,7 +25,7 @@
 <ul class="collapsible" data-collapsible="collapsible">
 <% events.forEach((event) => { %>
 <li class = "<%= event.name %>">
-  <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue %></div>
+  <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue.name %></div>
   <div class="collapsible-body"><a href= "#!" id="<%= event._id %>" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
   <span><%= event.date %></span>
   <br><a href="/events/<%= event._id %>">View Details</a><br>

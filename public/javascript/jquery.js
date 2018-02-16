@@ -43,7 +43,7 @@ $(document).ready(function() {
     today: "Today",
     clear: "Clear",
     close: "Ok",
-    closeOnSelect: false // Close upon selecting a date,
+    closeOnSelect: false
   });
 
   $(".timepicker").pickatime({
@@ -56,5 +56,17 @@ $(document).ready(function() {
     autoclose: false, // automatic close timepicker
     ampmclickable: true, // make AM PM clickable
     aftershow: function() {} //Function for after opening timepicker
+  });
+
+  $("#filter-btn").click(function() {
+    let filterDate = $(".datepicker").val();
+    let filterTime = $(".timepicker").val();
+    let date = new Date(filterDate);
+    for (i = 0; i <= myVenue.lenght; i++) {
+      if (date === myVenue[i].date) {
+        alert(myVenue[i].date);
+      }
+    }
+    $(".test").append(`${date}`);
   });
 });

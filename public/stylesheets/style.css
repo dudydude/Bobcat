@@ -30,7 +30,7 @@ form {
   text-align: center;
   padding: 1%;
   color: white;
-
+}
 
 .search {
   display: flex;
@@ -47,6 +47,15 @@ form {
   background-color: #3949ab;
 }
 
-a {
+.nav-wrapper a {
   text-decoration: none;
+  color: white;
+}
+btn {
+  text-decoration: none;
+}
+
+.brand-logo img {
+  max-width: 25%;
+  margin-left: 10%;
 }

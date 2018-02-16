@@ -91,18 +91,20 @@ router.get("/:eventId", (req, res, next) => {
 // show all events
 
 router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  Event.find({}, (err, events) => {
-    if (err) return next(err);
-    events.sort(function(a, b) {
-      var dateA = new Date(a.date),
-        dateB = new Date(b.date);
-      return dateA - dateB;
+  Event.find({})
+    .populate("venue")
+    .exec(function(err, events) {
+      if (err) return next(err);
+      events.sort(function(a, b) {
+        var dateA = new Date(a.date),
+          dateB = new Date(b.date);
+        return dateA - dateB;
+      });
+      res.render(`events/listings`, {
+        userId: req.params.id,
+        events: events
+      });
     });
-    res.render(`events/listings`, {
-      userId: req.params.id,
-      events: events
-    });
-  });
 });
 
 // add event to user's bookmarks
