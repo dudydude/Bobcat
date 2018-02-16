@@ -28,8 +28,8 @@
 <li class = "<%= event.name %>">
   <div class="collapsible-header"><i class="material-icons">location_on</i><%= event.name %> @ <%= event.venue.name %></div>
   <div class="collapsible-body"><a href= "#!" id="<%= event._id %>" class="secondary-content pawprint"><i class="small material-icons">pets</i></a>
-  <span><%= event.date %></span>
-  <br><a href="/events/<%= event._id %>">View Details</a><br>
+  <span><strong><%= event.date.toDateString() %></strong></span>
+  <br><br><%= event.description %><br><br> <a href="/events/<%= event._id %>"> View Details</a><br>
   </div>
 </li>
 <% }) %>

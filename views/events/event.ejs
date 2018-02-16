@@ -27,7 +27,10 @@
           <i class="material-icons right">pets</i>I'm going</a></span>
         </div>
         <div class="card-content">
-          <p><%= event.date.toDateString() %></p>
+          <p><strong><%= event.date.toDateString() %></strong></p>
+          <div class="divider"></div>
+          
+          <h4>Description</h4>
           <p><%= event.description %></p>
   <% if (event.creator.equals(user._id)) { %>
   <a href="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">

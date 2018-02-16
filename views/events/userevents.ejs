@@ -21,20 +21,23 @@
 <div class ="container">
 <h1 id="user-header" user-id="<%= user._id %>"><%= user.username%>'s events</h1>
 
-<a href= "/events/<%= user.id %>/myevents" class="waves-effect waves-light btn" id= "delete-all"><i class="material-icons right">pets</i>delete all</a>
+<a href= "/events/<%= user._id %>/all" class="waves-effect waves-light btn" id="back"><i class="material-icons right">arrow_back</i>back to upcoming</a>
+
 
 <ul class="collection">
 <% events.forEach((event) => { %>
     <li class="collection-item avatar">
-      <img src="" alt="" class="circle">
+      <img src="/images/stuckcat.jpg" alt="" class="circle">
       <span class="title">Title</span>
       <p><%= event.name %> @ <%= event.venue %><br>
-      <%= event.date %>
+      <%= event.date.toDateString() %><br><a href="/events/<%= event._id %>"> View Details</a>
       </p>
       <a href= "/events/<%= user.id %>/myevents" id = "<%= event.id %>"class="secondary-content deleteprint"><i class="small material-icons">pets</i></a>
     </li>
     <% }) %>
   </ul>
+  <a href= "/events/<%= user.id %>/myevents" class="waves-effect waves-light btn" id= "delete-all"><i class="material-icons right">pets</i>delete all</a>
   </div>
+  
 
   <script src = "/javascript/jquery.js"></script>
