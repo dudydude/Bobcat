@@ -18,6 +18,7 @@
 </div>
 </nav>
 
+<div class ="container">
 <h1 id="user-header" user-id="<%= user._id %>"><%= user.username%>'s events</h1>
 
 <a href= "/events/<%= user.id %>/myevents" class="waves-effect waves-light btn" id= "delete-all"><i class="material-icons right">pets</i>delete all</a>
@@ -34,5 +35,6 @@
     </li>
     <% }) %>
   </ul>
+  </div>
 
   <script src = "/javascript/jquery.js"></script>

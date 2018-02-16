@@ -42,3 +42,20 @@ form {
 .search label {
   width: 30%;
 }
+
+#index-body {
+  background-color: #3949ab;
+}
+
+.nav-wrapper a {
+  text-decoration: none;
+  color: white;
+}
+btn {
+  text-decoration: none;
+}
+
+.brand-logo img {
+  max-width: 25%;
+  margin-left: 10%;
+}

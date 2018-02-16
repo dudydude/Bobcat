@@ -1,6 +1,6 @@
 <nav>
 <div class="nav-wrapper">
-  <a href="/" class="brand-logo">Logo</a>
+  <a href="/" class="brand-logo"><img src="/images/bobcat_logo.png"></a>
   <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
   <ul class="right hide-on-med-and-down">
   <li> <a href = 'events/new'>create</a> </li>
@@ -12,35 +12,40 @@
 </nav>
 
 
+<script src="/javascript/jquery.js"></script>
 <div class="search">
   <label>Address :
     <input id="pac-input" type="text" placeholder="Enter a location">
   </label>
   <label>From :
-    <input type="date">
+    <input type="text" class="datepicker" id="startDate">
   </label>
   <label>To :
-    <input type="date">
+    <input type="text" class="timepicker" id="endDate">
   </label>
+  <button class="waves-effect waves-light btn" id="filter-btn">Submit</button>
 
 </div>
 
 
 
-
+<p class="test"></p>
 
 <br>
 <div id="map" class="center-align">
 </div>
 
-
 <script type="text/javascript">
-  var myEvent = <% - JSON.stringify(event) %>;
+  var myEvent = <%- JSON.stringify(event) %>;
 </script>
 
+<pre> <%= event.date %> </pre>
 
 
 
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
 <script type="text/javascript " src="/javascript/maps.js "></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initMap "
