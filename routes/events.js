@@ -129,7 +129,7 @@ router.get("/:id/myevents", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const userId = req.params.id;
   User.findById(userId)
     .populate("eventAttending")
-    .exec((err, user) => {
+    .exec((err, user, events) => {
       if (err) return next(err);
       res.render(`events/userevents`, {
         userId: req.params.id,

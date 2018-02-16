@@ -4,10 +4,32 @@ var autocomplete, map, marker;
 // console.log(markerCenter);
 
 // console.log(myEvent[0].venue.loc.lng);
+$("#filter-btn").click(function() {
+  dataType: "json";
+  let filterDate = $(".datepicker").val();
+  let filterTime = $(".timepicker").val();
+  let date = new Date(filterDate);
 
+  var marker = [];
+
+  for (i = 0; i < myEvent.length; i++) {
+    var stringEventDate = new Date(myEvent[i].date);
+
+    if (date.getTime() == stringEventDate.getTime()) {
+      console.log("match");
+      marker.push(myEvent[i]);
+      console.log(JSON.stringify(marker));
+    }
+  }
+
+  //console.log(marker);
+  //initMap(marker).preventDefault;
+  initMap;
+});
+// Try HTML5 geolocation.
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 48.860342, lng: 2.341932 },
+    center: { lat: 48.875297, lng: 2.337526 },
     zoom: 14
   });
 
@@ -64,11 +86,11 @@ function initMap() {
     var contentString = `<div id="iw-container"><h4 id="firstHeading" class="firstHeading">${
       myEvent[i].name
     }</h4> 
-    <h5>Description :  </h5>
-    <p>${myEvent[i].description}</p>
-    <button class="class="waves-effect waves-light btn">
-    <a href="/events/${myEvent[i]._id}"> see more</a></button></div>
-    `;
+  <h5>Description :  </h5>
+  <p>${myEvent[i].description}</p>
+  <button class="class="waves-effect waves-light btn">
+  <a href="/events/${myEvent[i]._id}"> see more</a></button></div>
+  `;
 
     var marker = new google.maps.Marker({
       position: {
@@ -79,7 +101,6 @@ function initMap() {
       map: map,
       contentString: contentString
     });
-    console.log(marker);
 
     var infowindow = new google.maps.InfoWindow({});
 
@@ -110,12 +131,10 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
+
   //autocompleteSearch();
   //autocomplete.bindTo("bounds", map);
 }
-
-// Try HTML5 geolocation.
-
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(

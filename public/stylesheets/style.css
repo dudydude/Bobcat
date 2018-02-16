@@ -69,6 +69,10 @@ btn {
   text-decoration: none;
 }
 
+#filter-btn {
+  margin-top: 2%;
+}
+
 .brand-logo img {
   max-width: 25%;
   margin-left: 10%;
