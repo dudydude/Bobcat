@@ -4,7 +4,7 @@ $(document).ready(function() {
   $(".collapsible").collapsible();
 
   //click pawprint
-  const meow = new Audio("/sounds/Kitty-meow.mp3");
+  const meow = new Audio("/sounds/bobcat.mp3");
 
   $(".pawprint").click(function() {
     meow.play();

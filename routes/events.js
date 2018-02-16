@@ -179,15 +179,11 @@ router.get("/:id/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     }
     if (event.creator.equals(req.user._id)) {
       res.render("events/edit", { event });
-    } else
-      res.render("events/event", {
-        title: "event details - " + event.name,
-        event: event
-      });
+    } else res.render("/");
   });
 });
 
-router.post("/:id", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+router.post("/:id/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.findByIdAndUpdate(
     req.params.id,
     {
@@ -200,17 +196,17 @@ router.post("/:id", ensureLogin.ensureLoggedIn(), (req, res, next) => {
     },
     (err, event) => {
       if (err) return next(err);
-      res.redirect(`/events/${req.params.id}`);
+      res.redirect(`/`);
     }
   );
 });
 
 // delete event
 
-router.post("/:id/delete", (req, res, next) => {
+router.post("/:id/delete", ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Event.findByIdAndRemove(req.params.id, (err, event) => {
     if (err) return next(err);
-    res.redirect("/events");
+    res.redirect(`/`);
   });
 });
 
