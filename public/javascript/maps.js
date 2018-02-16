@@ -4,27 +4,24 @@ var autocomplete, map, marker;
 // console.log(markerCenter);
 
 // console.log(myEvent[0].venue.loc.lng);
+var filteredEvent = [];
+
 $("#filter-btn").click(function() {
   dataType: "json";
   let filterDate = $(".datepicker").val();
   let filterTime = $(".timepicker").val();
   let date = new Date(filterDate);
 
-  var marker = [];
-
   for (i = 0; i < myEvent.length; i++) {
     var stringEventDate = new Date(myEvent[i].date);
 
     if (date.getTime() == stringEventDate.getTime()) {
       console.log("match");
-      marker.push(myEvent[i]);
-      console.log(JSON.stringify(marker));
+      filteredEvent.push(myEvent[i]);
+      console.log(JSON.stringify(filteredEvent));
     }
   }
-
-  //console.log(marker);
-  //initMap(marker).preventDefault;
-  initMap;
+  initMap();
 });
 // Try HTML5 geolocation.
 function initMap() {
@@ -82,33 +79,67 @@ function initMap() {
     map.fitBounds(bounds);
   });
 
-  for (i = 0; i <= myEvent.length; i++) {
-    var contentString = `<div id="iw-container"><h4 id="firstHeading" class="firstHeading">${
-      myEvent[i].name
-    }</h4> 
+  // MAP MAP MAP (init marker)
+  if (filteredEvent.length === 0) {
+    for (i = 0; i <= myEvent.length; i++) {
+      var contentString = `<div id="iw-container"><h4 id="firstHeading" class="firstHeading">${
+        myEvent[i].name
+      }</h4> 
   <h5>Description :  </h5>
   <p>${myEvent[i].description}</p>
   <button class="class="waves-effect waves-light btn">
   <a href="/events/${myEvent[i]._id}"> see more</a></button></div>
   `;
 
-    var marker = new google.maps.Marker({
-      position: {
-        lat: myEvent[i].venue.loc.lat,
-        lng: myEvent[i].venue.loc.lng
-      },
-      date: myEvent[i].date,
-      map: map,
-      contentString: contentString
-    });
+      var marker = new google.maps.Marker({
+        position: {
+          lat: myEvent[i].venue.loc.lat,
+          lng: myEvent[i].venue.loc.lng
+        },
+        date: myEvent[i].date,
+        map: map,
+        contentString: contentString
+      });
 
-    var infowindow = new google.maps.InfoWindow({});
+      var infowindow = new google.maps.InfoWindow({});
 
-    marker.addListener("click", function() {
-      infowindow.setContent(this.contentString);
-      infowindow.open(map, this);
-      map.setCenter(this.getPosition());
-    });
+      marker.addListener("click", function() {
+        infowindow.setContent(this.contentString);
+        infowindow.open(map, this);
+        map.setCenter(this.getPosition());
+      });
+    }
+    console.log("using myEvent");
+  } else {
+    for (i = 0; i <= filteredEvent.length; i++) {
+      var contentString = `<div id="iw-container"><h4 id="firstHeading" class="firstHeading">${
+        filteredEvent[i].name
+      }</h4> 
+  <h5>Description :  </h5>
+  <p>${filteredEvent[i].description}</p>
+  <button class="class="waves-effect waves-light btn">
+  <a href="/events/${filteredEvent[i]._id}"> see more</a></button></div>
+  `;
+
+      var marker = new google.maps.Marker({
+        position: {
+          lat: filteredEvent[i].venue.loc.lat,
+          lng: filteredEvent[i].venue.loc.lng
+        },
+        date: filteredEvent[i].date,
+        map: map,
+        contentString: contentString
+      });
+
+      var infowindow = new google.maps.InfoWindow({});
+
+      marker.addListener("click", function() {
+        infowindow.setContent(this.contentString);
+        infowindow.open(map, this);
+        map.setCenter(this.getPosition());
+      });
+    }
+    console.log("using filteredEvent");
   }
 
   if (navigator.geolocation) {
@@ -175,3 +206,5 @@ function initEventMap() {
   });
 }
 //google.maps.event.addDomListener(window, "load", initialize);
+
+//
