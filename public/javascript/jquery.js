@@ -58,17 +58,17 @@ $(document).ready(function() {
     aftershow: function() {} //Function for after opening timepicker
   });
 
-  $("#filter-btn").click(function() {
-    dataType: "json";
-    let filterDate = $(".datepicker").val();
-    let filterTime = $(".timepicker").val();
-    let date = new Date(filterDate);
+  // $("#filter-btn").click(function() {
+  //   dataType: "json";
+  //   let filterDate = $(".datepicker").val();
+  //   let filterTime = $(".timepicker").val();
+  //   let date = new Date(filterDate);
 
-    for (i = 0; i < myEvent.length; i++) {
-      var stringEventDate = new Date(myEvent[i].date);
+  //   for (i = 0; i < myEvent.length; i++) {
+  //     var stringEventDate = new Date(myEvent[i].date);
 
-      if (date.getTime() == stringEventDate.getTime())
-        console.log("this is it = " + stringEventDate);
-    }
-  });
+  //     if (date.getTime() == stringEventDate.getTime())
+  //       console.log("this is it = " + stringEventDate);
+  //   }
+  // });
 });

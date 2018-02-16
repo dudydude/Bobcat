@@ -28,7 +28,7 @@
     <li class="collection-item avatar">
       <img src="" alt="" class="circle">
       <span class="title">Title</span>
-      <p><%= event.name %> @ <%= event.venue %><br>
+      <p><%= event.name %> @ <%= event.venue.name %><br>
       <%= event.date %>
       </p>
       <a href= "/events/<%= user.id %>/myevents" id = "<%= event.id %>"class="secondary-content deleteprint"><i class="material-icons">pets</i></a>
