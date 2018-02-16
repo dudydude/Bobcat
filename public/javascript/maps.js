@@ -70,6 +70,13 @@ function initMap() {
     <a href="/events/${myEvent[i]._id}"> see more</a></button></div>
     `;
 
+    console.log(marker);
+    // var markerDateClean = new Date(marker.date);
+    // console.log(markerDateClean);
+
+    // var markerDateClean = new Date(marker.date);
+    //console.log(markerDateClean);
+
     var marker = new google.maps.Marker({
       position: {
         lat: myEvent[i].venue.loc.lat,

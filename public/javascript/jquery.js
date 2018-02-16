@@ -59,14 +59,16 @@ $(document).ready(function() {
   });
 
   $("#filter-btn").click(function() {
+    dataType: "json";
     let filterDate = $(".datepicker").val();
     let filterTime = $(".timepicker").val();
     let date = new Date(filterDate);
-    for (i = 0; i <= myVenue.lenght; i++) {
-      if (date === myVenue[i].date) {
-        alert(myVenue[i].date);
-      }
+
+    for (i = 0; i < myEvent.length; i++) {
+      var stringEventDate = new Date(myEvent[i].date);
+
+      if (date.getTime() == stringEventDate.getTime())
+        console.log("this is it = " + stringEventDate);
     }
-    $(".test").append(`${date}`);
   });
 });

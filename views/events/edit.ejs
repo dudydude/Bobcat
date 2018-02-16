@@ -16,7 +16,7 @@
     <label>
       Date :
     </label>
-    <input type="date" name="date" class="date">
+    <input type="text" name="date" class="datepicker">
     <br>
 
     <label>Address
@@ -63,17 +63,11 @@
       </span>
     </label>
     <br>
-    <<<<<<< HEAD <button type="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">Confirm edit</button>
+    <button type="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">Confirm edit</button>
   </form>
   <br>
-  <form method="post" action="/events/<%= event._id %>/delete" class="waves-effect waves-light btn">
-    <button name="delete">Delete event</button>
-  </form>
-  =======
-  <button href="/" type="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">Confirm edit</button>
-  </form>
 
-  >>>>>>> 6f08a73fb1d03bee68a11b6ade1c688279463761
+
 </div>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
