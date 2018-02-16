@@ -5,14 +5,16 @@
   </div>
 
   <form method="post" action="/events/<%= event._id %>/delete">
-    <a href="/" class="waves-effect waves-light btn">Delete event</a>
+  <button type= "submit">
+    <a class="waves-effect waves-light btn">Delete event</a>
+    </button>
   </form>
 
   <form method="POST" action="/events/<%= event._id %>/edit">
     <label>
       Name of the event:
     </label>
-    <input type="text" name="name">
+    <input type="text" name="name" value="<%= event.name %>">
     <label>
       Date :
     </label>
@@ -21,7 +23,7 @@
 
     <label>Address
     </label>
-    <input id="searchTextField" name="searchTextField" class="form-control" placeholder="Start typing your address...">
+    <input id="searchTextField" name="searchTextField" class="form-control" value= "<%= event.venue.name %>" placeholder="Start typing your address...">
     </br>
     <input id="venue_lat" name="venue_lat" hidden>
     <input id="venue_long" name="venue_long" hidden>
@@ -33,7 +35,7 @@
     <label>
       Description :
     </label>
-    <input type="text" id="textarea1" class="materialize-textarea" name="description">
+    <input type="text" id="textarea1" class="materialize-textarea" name="description" value= "<%= event.description %>">
     </br>
     <!-- <label> Upload a picture
         <input type="file" name="photo">
@@ -63,13 +65,10 @@
       </span>
     </label>
     <br>
-    <button type="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">Confirm edit</button>
+  <button type="submit" class="waves-effect waves-light btn">Confirm edit</button>
   </form>
-  <br>
-
-
 </div>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
 <script src="/javascript/jquery.js"></script>

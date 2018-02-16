@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
@@ -72,4 +76,21 @@ btn {
 .brand-logo img {
   max-width: 25%;
   margin-left: 10%;
+}
+
+.collapsible-body {
+  padding: 15, 28, 15, 28;
+}
+
+#myevs {
+  margin-bottom: 28px;
+}
+
+#delete-all {
+  margin-top: 20px;
+}
+
+#back {
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

@@ -110,7 +110,6 @@ router.get("/:id/all", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 // add event to user's bookmarks
 
 router.post("/bookmark", (req, res, next) => {
-  console.log("DEBUG req.body", req.body);
   const userId = req.body.user;
   const eventId = req.body.event;
 
@@ -203,7 +202,17 @@ router.post("/:id/edit", ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 // delete event
 
+// router.get("/:id/delete", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+//   Event.findById(req.params.id, (err, event) => {
+//     if (err) {
+//       return next(err);
+//     }
+//     res.render("/");
+//   });
+// });
+
 router.post("/:id/delete", ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  console.log("hi");
   Event.findByIdAndRemove(req.params.id, (err, event) => {
     if (err) return next(err);
     res.redirect(`/`);

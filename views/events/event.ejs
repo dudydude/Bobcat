@@ -27,7 +27,10 @@
           <i class="material-icons right">pets</i>I'm going</a></span>
         </div>
         <div class="card-content">
-          <p><%= event.date.toDateString() %></p>
+          <p><strong><%= event.date.toDateString() %></strong></p>
+          <div class="divider"></div>
+          
+          <h4>Description</h4>
           <p><%= event.description %></p>
   <% if (event.creator.equals(user._id)) { %>
   <a href="/events/<%= event._id %>/edit" class="waves-effect waves-light btn">
@@ -69,7 +72,7 @@ Now that I've found BOBCAT I'll never use other cats again!
 
 
 
-<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 <script src = "/javascript/jquery.js"></script>
 <script type="text/javascript " src="/javascript/maps.js "></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9qgbLJovicwKDkq7F5YzuoPYUDYNBVd8&libraries=places&callback=initEventMap "
